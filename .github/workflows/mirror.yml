@@ -1,7 +1,7 @@
 # Every 15 minutes: verify netsign.io's newest audit log checkpoints against the
 # pinned key and the last mirrored checkpoint, verify their RFC 3161 tokens with
 # OpenSSL, and commit them. A failed run is the alarm (GitHub e-mails the repo's
-# watchers): the log contradicts what was mirrored before -- or a series was
+# watchers): the log contradicts what was mirrored before — or a series was
 # closed, which is accepted only by running this workflow by hand with
 # accept_series set, after reading the incident.
 name: mirror
