@@ -32,7 +32,7 @@ headers.txt
 go.work
 go.work.sum
 go.sum
-go.mod
+
 
 #environment variables
 .env
