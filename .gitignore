@@ -1,0 +1,190 @@
+node_modules/
+*.db
+*.db-shm
+*.db-wal
+/netsign
+request.json
+commit.json
+headers.txt
+*.DS_Store*
+*.pem
+*.workspace
+
+# If you prefer the allow list template instead of the deny list, see community template:
+# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
+#
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go workspace file
+go.work
+go.work.sum
+go.sum
+go.mod
+
+#environment variables
+.env
+.env.live
+.env.test
+
+# macos system files
+*.DS_Store*
+
+#TLS certificate and key
+*.pem
+*.crt
+
+#executable
+bitsflip
+
+#local ip db
+abuseipdb_blacklist.csv
+
+#redis
+dump.rdb
+
+#sqlite db
+messenger.db
+messenger.db-shm
+messenger.db-wal
+
+bitsflip.io.code-workspace
+abuseipdb_blacklist.csv
+
+test.html
+
+*.log
+
+# Outils de scan local wget
+scan-links.sh
+wget_crawl.log
+checklink.sh
+
+# Outils de scan local python Claude
+link.checker.v.2.py
+link.checker.v.1.py
+link.checker.v.*.py
+
+
+# Tooling and IDEs
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+
+# latex source and backups 
+**/latex/
+
+#movie files
+**/*.mp4
+**/*.webm
+**/*.mov
+
+#root scripts 
+/*.py
+/*.sh
+/*.xml
+/*.xsl
+
+#backups
+**/*.backup
+**/html_backups/
+**/*copy*
+**/*backup*
+
+#temp air folder
+/tmp
+.air.toml
+
+#misc junk
+public/sort-sitemap.xsl
+public/sorted-sitemap.xml
+site.html
+
+
+#cert
+*.key
+*.pem
+*.crt
+*.csr
+
+*zip
+# YubiKey signing (docs/piv-yubikey.md): Yubico's public attestation
+# certificates and test fixtures are embedded at build time, and the bridge
+# is its own module -- these must be committed despite the rules above.
+!internal/piv/**/*.pem
+!clients/piv-bridge/go.mod
+!clients/piv-bridge/go.sum
+
+#macos swift app build
+clients/macos/build/ 
+clients/macos/.build/
+clients/macos/build.log
+
+#build
+server.bin
+server.log
+server.pid
+
+Claude outputs
+keys
+*.p8
+
+**/credentials/
+
+netsign-vps/downloads/
+netsign-vps/dist/
+
+*.dmg
+*.exe
+
+services/pades-servlet/target/
+
+*.code-workspace
+
+**/dist/
+
+ca-ceremony
+
+ceremony-[a-zA-Z0-9]*-root-cert.json
+
+
+pierre-paul@srv1713633: ~/bitsflip.go$ pierre-paul@srv1713633: ~/bitsflip.go$ df -h / /var/lib/redis                               
+free -m
+redis-cli -p 6380 INFO persistence | grep -E 'rdb_last_bgsave_status|rdb_changes_since'
+redis-cli -p 6380 CONFIG GET dir
+journalctl -u redis-server -n 30 --no-pager   # or: tail -30 /var/log/redis/redis-server.log
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1       193G   30G  164G  16% /
+/dev/sda1       193G   30G  164G  16% /
+               total        used        free      shared  buff/cache   available
+Mem:           15992        1465        7397           1        7460       14527
+Swap:              0           0           0
+rdb_changes_since_last_save:0
+rdb_last_bgsave_status:ok
+1) "dir"
+2) "/var/snap/redis/common/var/lib/redis"
+-- No entries --
+
+

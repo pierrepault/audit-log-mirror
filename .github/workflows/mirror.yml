@@ -1,0 +1,52 @@
+# Every 15 minutes: verify netsign.io's newest audit log checkpoints against the
+# pinned key and the last mirrored checkpoint, verify their RFC 3161 tokens with
+# OpenSSL, and commit them. A failed run is the alarm (GitHub e-mails the repo's
+# watchers): the log contradicts what was mirrored before -- or a series was
+# closed, which is accepted only by running this workflow by hand with
+# accept_series set, after reading the incident.
+name: mirror
+on:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
+    inputs:
+      accept_series:
+        description: 'Accept the switch to this audit log series, after reading its incident (leave empty otherwise)'
+        required: false
+        default: ''
+permissions:
+  contents: write
+concurrency:
+  group: mirror
+  cancel-in-progress: false
+jobs:
+  mirror:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
+        with:
+          go-version-file: go.mod
+      - name: Test the witness
+        run: go test ./...
+      - name: Verify and mirror
+        env:
+          ACCEPT_SERIES: ${{ inputs.accept_series }}
+        run: |
+          set +e
+          go run . -dir . -accept-series "${ACCEPT_SERIES:-0}"
+          code=$?
+          if [ "$code" -eq 3 ]; then
+            echo "::warning::netsign.io did not answer; nothing mirrored this run"
+            exit 0
+          fi
+          exit "$code"
+      - name: Commit
+        run: |
+          git add -A
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='audit-log-mirror' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -q -F .commit-message
+          git push
