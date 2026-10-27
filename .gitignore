@@ -7,7 +7,6 @@ request.json
 commit.json
 headers.txt
 *.DS_Store*
-*.pem
 *.workspace
 
 # If you prefer the allow list template instead of the deny list, see community template:
@@ -44,7 +43,7 @@ go.mod
 *.DS_Store*
 
 #TLS certificate and key
-*.pem
+
 *.crt
 
 #executable
@@ -125,7 +124,6 @@ site.html
 
 #cert
 *.key
-*.pem
 *.crt
 *.csr
 
