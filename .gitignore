@@ -67,10 +67,6 @@ test.html
 
 *.log
 
-# Outils de scan local wget
-scan-links.sh
-wget_crawl.log
-checklink.sh
 
 # Outils de scan local python Claude
 link.checker.v.2.py
